@@ -8,6 +8,7 @@ Denmark,97.0,mostly free,77.8,good,89.48,full democracy,9.28,free
 Ireland,97.0,free,82.6,good,89.91,full democracy,9.19,free
 Luxembourg,97.0,mostly free,79.2,satisfactory,81.98,full democracy,8.81,free
 Netherlands,97.0,mostly free,77.3,good,87,full democracy,9.00,free
+San Marino,97.0,,,,,,,free
 Belgium,96.0,moderately free,65.6,satisfactory,76.47,flawed democracy,7.64,free
 Japan,96.0,moderately free,67.5,problematic,63.95,full democracy,8.40,free
 Portugal,96.0,moderately free,68.7,satisfactory,84.6,flawed democracy,7.75,free
@@ -16,40 +17,64 @@ Switzerland,96.0,free,83.0,satisfactory,84.4,full democracy,9.14,free
 Uruguay,96.0,moderately free,69.8,satisfactory,70.33,full democracy,8.66,free
 Australia,95.0,mostly free,76.2,satisfactory,78.24,full democracy,8.66,free
 Estonia,95.0,mostly free,77.8,good,85.31,flawed democracy,7.96,free
+Barbados,94.0,moderately free,66.8,,,,,free
 Chile,94.0,mostly free,71.4,problematic,60.09,flawed democracy,7.98,free
 Czechia,94.0,mostly free,70.2,satisfactory,83.58,flawed democracy,7.97,free
 Iceland,94.0,mostly free,70.5,satisfactory,83.19,full democracy,9.45,free
 Taiwan,94.0,free,80.0,satisfactory,75.54,full democracy,8.92,free
+Andorra,93.0,,,satisfactory,75.05,,,free
 Austria,93.0,moderately free,68.4,satisfactory,77.3,full democracy,8.28,free
+Dominica,93.0,mostly unfree,54.0,problematic,58.36,,,free
 Germany,93.0,mostly free,72.1,satisfactory,81.91,full democracy,8.80,free
+Marshall Islands,93.0,,,,,,,free
+Tuvalu,93.0,,,,,,,free
 Cabo Verde,92.0,moderately free,65.8,satisfactory,75.72,flawed democracy,7.65,free
 Cyprus,92.0,mostly free,72.2,problematic,68.62,flawed democracy,7.38,free
+Micronesia,92.0,moderately free,61.0,,,,,free
+Palau,92.0,,,,,,,free
+St. Lucia,92.0,moderately free,62.2,problematic,58.36,,,free
 Costa Rica,91.0,moderately free,67.7,satisfactory,80.2,full democracy,8.29,free
+The Bahamas,91.0,moderately free,62.5,,,,,free
 United Kingdom,91.0,moderately free,68.6,satisfactory,78.51,flawed democracy,8.28,free
 Italy,90.0,moderately free,60.1,satisfactory,72.05,flawed democracy,7.69,free
+Kiribati,90.0,mostly unfree,51.3,,,,,free
+Liechtenstein,90.0,,,satisfactory,84.47,,,free
 Slovakia,90.0,moderately free,68.1,satisfactory,83.22,flawed democracy,7.07,free
 Spain,90.0,moderately free,63.3,satisfactory,75.37,full democracy,8.07,free
+St. Vincent and the Grenadines,90.0,mostly unfree,59.8,problematic,58.36,,,free
 France,89.0,moderately free,62.5,satisfactory,78.72,full democracy,8.07,free
+Grenada,89.0,,,problematic,58.36,,,free
 Lithuania,89.0,mostly free,72.9,good,86.79,flawed democracy,7.31,free
+St. Kitts and Nevis,89.0,,,problematic,58.36,,,free
 Latvia,88.0,mostly free,71.5,satisfactory,83.27,flawed democracy,7.38,free
+Belize,87.0,moderately free,61.2,satisfactory,70.49,,,free
 Malta,87.0,moderately free,64.5,problematic,59.76,flawed democracy,7.93,free
+Antigua and Barbuda,85.0,,,problematic,58.36,,,free
 Argentina,85.0,repressed,49.9,satisfactory,73.36,flawed democracy,6.62,free
 Greece,85.0,mostly unfree,55.1,problematic,55.2,full democracy,8.14,free
 Mauritius,85.0,mostly free,71.5,problematic,65.56,full democracy,8.14,free
 Mongolia,84.0,moderately free,60.6,problematic,59.33,flawed democracy,6.48,free
+Samoa,84.0,moderately free,67.2,satisfactory,82.15,,,free
+São Tomé and Príncipe,84.0,moderately free,60.5,,,,,free
 Croatia,83.0,moderately free,67.2,satisfactory,71.95,flawed democracy,6.50,free
 Panama,83.0,moderately free,64.1,problematic,63.67,flawed democracy,6.91,free
 Romania,83.0,moderately free,64.4,problematic,69.04,flawed democracy,6.45,free
 South Korea,83.0,mostly free,73.1,satisfactory,70.83,full democracy,8.09,free
-United States,80.0,mostly free,70.1,satisfactory,71.22,flawed democracy,7.85,free
+United States,80.0,mostly free,70.1,satisfactory,71.22,flawed democracy,7.85,partly free
+Monaco,82.0,,,,,,,free
 Trinidad and Tobago,82.0,moderately free,60.4,satisfactory,76.54,flawed democracy,7.16,free
-Ghana,80.0,mostly unfree,55.8,problematic,65.93,flawed democracy,6.30,free
-Jamaica,80.0,moderately free,68.1,satisfactory,75.89,flawed democracy,7.06,free
-Poland,80.0,moderately free,66.0,problematic,67.66,flawed democracy,7.18,free
-South Africa,79.0,mostly unfree,55.3,satisfactory,78.6,flawed democracy,7.05,free
-Suriname,79.0,repressed,46.7,satisfactory,70.62,flawed democracy,6.88,free
-Bulgaria,78.0,moderately free,68.5,problematic,62.98,flawed democracy,6.41,free
-Namibia,77.0,mostly unfree,57.5,satisfactory,80.91,flawed democracy,6.52,free
+Vanuatu,82.0,moderately free,62.2,,,,,free
+Tonga,81.0,mostly unfree,59.2,satisfactory,71.29,,,free
+Ghana,80.0,mostly unfree,55.8,problematic,65.93,flawed democracy,6.30,partly free
+Jamaica,80.0,moderately free,68.1,satisfactory,75.89,flawed democracy,7.06,partly free
+Poland,80.0,moderately free,66.0,problematic,67.66,flawed democracy,7.18,partly free
+Seychelles,79.0,moderately free,60.4,satisfactory,75.71,,,partly free
+South Africa,79.0,mostly unfree,55.3,satisfactory,78.6,flawed democracy,7.05,partly free
+Suriname,79.0,repressed,46.7,satisfactory,70.62,flawed democracy,6.88,partly free
+Bulgaria,78.0,moderately free,68.5,problematic,62.98,flawed democracy,6.41,partly free
+Namibia,77.0,mostly unfree,57.5,satisfactory,80.91,flawed democracy,6.52,partly free
+Nauru,77.0,,,,,,,partly free
+Solomon Islands,75.0,mostly unfree,55.0,,,,,partly free
 Israel,73.0,mostly free,70.1,problematic,57.57,flawed democracy,7.80,partly free
 Guyana,73.0,mostly unfree,57.3,problematic,67.5,flawed democracy,6.26,partly free
 Botswana,72.0,moderately free,68.0,problematic,64.61,flawed democracy,7.73,partly free
@@ -76,6 +101,7 @@ Nepal,62.0,mostly unfree,52.1,problematic,57.89,hybrid regime,4.60,partly free
 Benin,61.0,mostly unfree,57.7,difficult,52.44,hybrid regime,4.68,partly free
 Moldova,61.0,mostly unfree,57.1,satisfactory,77.62,flawed democracy,6.23,partly free
 Papua New Guinea,61.0,repressed,49.4,problematic,67.62,flawed democracy,6.03,partly free
+Kosovo,60.0,moderately free,60.6,problematic,68.38,,,partly free
 Mexico,60.0,moderately free,62.0,difficult,47.98,hybrid regime,5.14,partly free
 Sierra Leone,60.0,repressed,44.6,problematic,62.55,hybrid regime,4.32,partly free
 Georgia,58.0,moderately free,68.4,problematic,61.69,hybrid regime,5.20,partly free
@@ -93,18 +119,21 @@ Bosnia and Herzegovina,51.0,moderately free,62.0,problematic,65.43,hybrid regime
 Tunisia,51.0,repressed,48.8,difficult,50.11,hybrid regime,5.51,partly free
 The Gambia,50.0,mostly unfree,58.2,satisfactory,71.06,hybrid regime,4.47,partly free
 Côte d'Ivoire,49.0,mostly unfree,58.4,problematic,68.83,hybrid regime,4.22,partly free
+Ukraine,49.0,mostly unfree,,problematic,61.19,hybrid regime,5.06,partly free
 Honduras,48.0,mostly unfree,58.6,very serious,32.65,hybrid regime,4.98,partly free
 Singapore,48.0,free,83.5,difficult,47.88,flawed democracy,6.18,partly free
 Guatemala,46.0,moderately free,62.4,difficult,48.12,hybrid regime,4.47,partly free
+Maldives,44.0,repressed,47.8,problematic,56.93,,,partly free
 Mozambique,44.0,mostly unfree,50.7,problematic,56.13,authoritarian,3.51,partly free
 Nigeria,44.0,mostly unfree,53.1,difficult,49.56,hybrid regime,4.23,partly free
 Guinea-Bissau,43.0,repressed,42.7,problematic,61.57,authoritarian,2.45,partly free
 Comoros,42.0,mostly unfree,52.0,problematic,62.25,authoritarian,3.04,partly free
 Lebanon,42.0,repressed,48.3,difficult,50.46,authoritarian,3.56,partly free
 Togo,42.0,mostly unfree,50.9,problematic,63.06,authoritarian,2.99,partly free
-Bangladesh,40.0,mostly unfree,54.4,very serious,35.31,hybrid regime,5.87,partly free
-Mauritania,39.0,mostly unfree,55.3,problematic,59.45,hybrid regime,4.14,partly free
-Kuwait,38.0,mostly unfree,58.5,very serious,38.84,authoritarian,3.50,partly free
+Hong Kong,41.0,,,difficult,44.86,hybrid regime,5.24,not free
+Bangladesh,40.0,mostly unfree,54.4,very serious,35.31,hybrid regime,5.87,not free
+Mauritania,39.0,mostly unfree,55.3,problematic,59.45,hybrid regime,4.14,not free
+Kuwait,38.0,mostly unfree,58.5,very serious,38.84,authoritarian,3.50,not free
 Morocco,37.0,mostly unfree,56.8,difficult,43.69,hybrid regime,5.04,not free
 Tanzania,36.0,mostly unfree,59.1,difficult,44.02,hybrid regime,5.35,not free
 Thailand,36.0,mostly unfree,59.0,problematic,55.24,flawed democracy,6.35,not free
@@ -116,7 +145,9 @@ Turkey,33.0,mostly unfree,56.2,very serious,33.97,hybrid regime,4.33,not free
 Algeria,32.0,repressed,43.9,difficult,45.74,authoritarian,3.66,not free
 Guinea,30.0,mostly unfree,53.3,problematic,59.51,authoritarian,2.21,not free
 Haiti,30.0,repressed,48.2,problematic,57.38,authoritarian,2.81,not free
+Iraq,30.0,,,very serious,32.94,authoritarian,2.88,not free
 Angola,28.0,mostly unfree,54.3,difficult,48.3,hybrid regime,4.18,not free
+Brunei,28.0,moderately free,65.9,difficult,44.2,,,not free
 Burkina Faso,27.0,mostly unfree,51.9,problematic,67.64,authoritarian,2.73,not free
 Kyrgyzstan,27.0,mostly unfree,55.2,difficult,49.91,authoritarian,3.70,not free
 Zimbabwe,27.0,repressed,38.2,difficult,48.17,authoritarian,3.04,not free
@@ -146,11 +177,15 @@ Bahrain,12.0,moderately free,63.4,very serious,30.59,authoritarian,2.52,not free
 Cuba,12.0,repressed,25.7,very serious,29,authoritarian,2.65,not free
 Uzbekistan,12.0,mostly unfree,55.9,difficult,45.73,authoritarian,2.12,not free
 Iran,11.0,repressed,41.2,very serious,24.81,authoritarian,1.96,not free
+Yemen,10.0,,,very serious,32.78,authoritarian,1.95,not free
 China,9.0,repressed,48.5,very serious,22.97,authoritarian,2.12,not free
+Libya,9.0,,,difficult,40.22,authoritarian,1.78,not free
 Belarus,8.0,repressed,48.4,very serious,37.17,authoritarian,1.99,not free
 Burma,8.0,repressed,42.2,very serious,28.26,authoritarian,0.85,not free
 Saudi Arabia,8.0,moderately free,61.9,very serious,32.43,authoritarian,2.08,not free
+Somalia,8.0,,,difficult,44.24,,,not free
 Azerbaijan,7.0,moderately free,61.6,very serious,39.93,authoritarian,2.80,not free
+Afghanistan,6.0,,,very serious,39.75,authoritarian,0.26,not free
 Sudan,6.0,repressed,33.9,difficult,40.83,authoritarian,1.76,not free
 Central African Republic,5.0,repressed,41.3,problematic,57.56,authoritarian,1.18,not free
 Equatorial Guinea,5.0,repressed,47.7,difficult,50.35,authoritarian,1.92,not free
@@ -158,3 +193,6 @@ Tajikistan,5.0,mostly unfree,51.3,very serious,39.06,authoritarian,1.94,not free
 Eritrea,3.0,repressed,39.5,very serious,27.86,authoritarian,1.97,not free
 North Korea,3.0,repressed,2.9,very serious,21.72,authoritarian,1.08,not free
 Turkmenistan,2.0,repressed,46.3,very serious,25.82,authoritarian,1.66,not free
+South Sudan,1.0,,,difficult,50.62,,,not free
+Syria,1.0,,,very serious,27.22,authoritarian,1.43,not free
+Palestine,,,,very serious,37.86,authoritarian,3.47,
