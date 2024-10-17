@@ -1,7 +1,7 @@
 "identification","identification2","var1","var2","var3","category","category_label","category_int"
-"PER'U","SOUTH AMERICA",1500,1200000,500,"A","Not Allied",0
+NA,"SOUTH AMERICA",1500,1200000,500,"A","Not Allied",0
 "USA","NORTH AMERICA",2500,1300000,1500,"A","Not Allied",0
 "CANADA","NORTH AMERICA",3500,NA,1.5,"Ba","Allied",1
-"C^OTE D'IVOIRE","AFRICA",2500,NA,NA,"Ba","Allied",1
+NA,"AFRICA",2500,NA,NA,"Ba","Allied",1
 "ISRAEL","ASIA",NA,250000,NA,NA,NA,NA
 "UNITED KINGDOM","EUROPE",2550,310000,330,"Ba","Allied",1
