@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>smallExample_Clean_R</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>deli2_codeFull_R</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7482,33 +7482,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Recurrent-coding-strategies">Recurrent coding strategies<a class="anchor-link" href="#Recurrent-coding-strategies">¶</a></h1><p>Imagine we have this data:</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-r"><pre><span></span><span class="n">IRdisplay</span><span class="o">::</span><span class="nf">display_html</span><span class="p">(</span><span class="s">'&lt;iframe width="700" height="300" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR-ubcCBaveg-58jcVmbErpO5kZswjFyHN5YlB8tB1a8B4fzU4sqZ08jkOKx4kBz1qtDNkJJWH8vBYF/pubhtml?gid=0&amp;single=true"&gt;&lt;/iframe&gt;'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<iframe height="300" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR-ubcCBaveg-58jcVmbErpO5kZswjFyHN5YlB8tB1a8B4fzU4sqZ08jkOKx4kBz1qtDNkJJWH8vBYF/pubhtml?gid=0&amp;single=true" width="700"></iframe>
-</div>
+<h1 id="Cleaning-and-Formatting-my-data">Cleaning and Formatting my data<a class="anchor-link" href="#Cleaning-and-Formatting-my-data">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7519,7 +7493,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>And you need to create a cleaner version:</p>
+<p>This is my data:</p>
 </div>
 </div>
 </div>
@@ -7528,7 +7502,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">IRdisplay</span><span class="o">::</span><span class="nf">display_html</span><span class="p">(</span><span class="s">'&lt;iframe width="700" height="300" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR-ubcCBaveg-58jcVmbErpO5kZswjFyHN5YlB8tB1a8B4fzU4sqZ08jkOKx4kBz1qtDNkJJWH8vBYF/pubhtml?gid=2024244899&amp;single=true"&gt;&lt;/iframe&gt;'</span><span class="p">)</span>
@@ -7556,49 +7530,9 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In general, cleaning requires exploration. In exploration you check for inconsistencies.</p>
-<p>The actual cleaning plan starts after exploration, and the  strategies to recover the true value of the cell can be one or several of these:</p>
-<ul>
-<li><strong>replace</strong> the wrong value for good value.</li>
-<li><strong>detele</strong> the wrong value.</li>
-<li><strong>extract</strong> the good value.</li>
-<li><strong>split</strong> the cell contents</li>
-</ul>
-<p><strong>It is also recommended to clean the columns before the contents.</strong></p>
-<p>Notice the <strong>column names</strong> have lightblue background,  and the <strong>contents</strong> have a grey background. I have also colored in red the column names that may serve as key columns, the unique identifiers.</p>
-<h2 id="1.-On-REGEX">1. On REGEX<a class="anchor-link" href="#1.-On-REGEX">¶</a></h2><p>REGEX is <strong>complex</strong>, but let share some <em>patterns</em> that we will often use.</p>
-<ul>
-<li><p>This [a-zA-Z] represents any character of the alphabet (based in latin alphabet).</p>
-</li>
-<li><p>This [^a-zA-Z] represents any characters *outside** the alphabet. The [^] means "the opposite" here. You can use for other purposes (see below).</p>
-</li>
-<li><p>This \w is not the same as [a-zA-Z], \w can be equal to [0-9a-zA-Z\s_], that is, it includes numbers, spaces (\s) and underscore (_).</p>
-</li>
-<li><p>Then, \W is the opposite of \w</p>
-</li>
-<li><p>Similarly, \d is equal to [0-9], and \D is the opposite.</p>
-</li>
-<li><p>Some other relevant symbols are:</p>
-<ul>
-<li>The dot (<strong>.</strong>), representing any character.</li>
-<li>The plus (<strong>+</strong>), here \d+ represents one or more digits.</li>
-<li>The asterisk (<strong>*</strong>) here [a-z]* represents zero or more lowercase letters.</li>
-<li>The symbols <strong>^</strong> and <strong>$</strong> are also very relevant. Together the represent a whole string, that is,  ^\d[a-z]$ means the string starts with a digit and ends with a lowercase letter.</li>
-</ul>
-<p>You will need these when exploring and implementing the cleaning.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="2.-The-Data-Types">2. The Data Types<a class="anchor-link" href="#2.-The-Data-Types">¶</a></h2><p>Imagine you CAN NOT see all the data. In that case we can use some code.</p>
+<p>You can find it <a href="https://docs.google.com/spreadsheets/d/1e1Pll_MGF6dVi4KJTXTiLfRXzkjf7ZdBhd58yt3Vkl8/edit?usp=sharing">here</a> too, on GoogleDrive.</p>
+<p><strong>FOR this STEP, you should read from GitHub</strong>.</p>
+<p>This is the link to my CSV:</p>
 </div>
 </div>
 </div>
@@ -7607,7 +7541,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1"># the link as CSV</span>
@@ -7633,7 +7567,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">=</span><span class="nf">read.csv</span><span class="p">(</span><span class="n">linkToData</span><span class="p">,</span><span class="n">check.names</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
@@ -7649,7 +7583,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>I recommend you do this first:</p>
+<p>As usual, I check the data types:</p>
 </div>
 </div>
 </div>
@@ -7658,7 +7592,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">str</span><span class="p">(</span><span class="n">dirty</span><span class="p">)</span>
@@ -7693,14 +7627,13 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Identify which are textual, numerical, or categorical.</p>
+<p>Now, I identify which are textual, numerical, or categorical.</p>
 <ul>
 <li>Columns <strong>identification1</strong> and <strong>identification2</strong> are <em>textual</em>.</li>
 <li>The columns from <strong>var1</strong> to <strong>var@3</strong> are all <em>numerical</em>. But if the type is <em>object</em> the column should have some non numerical characters.</li>
 <li>Column <strong>category</strong> is <em>categorical</em>. Keep in mind that categorical types will NEVER be recognised as such when read from a CSV. They will always be understood as text (<em>object</em>).</li>
 </ul>
 <p>The <strong>column names</strong> are always <em>textual</em>.</p>
-<h2 id="2.-EXPLORATION">2. EXPLORATION<a class="anchor-link" href="#2.-EXPLORATION">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7711,9 +7644,19 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="2.1.-Exploring-TEXT">2.1. <strong>Exploring TEXT</strong><a class="anchor-link" href="#2.1.-Exploring-TEXT">¶</a></h3><p>When data is textual, you need to explore the cells to verify all the characters are part of the <strong>alphabet</strong>.</p>
-<p>PANDAS offers <strong>.str.</strong> function that can only be used with text, if you try to use it with a numerical value, you will get an <strong>error</strong>.</p>
-<p>Let's see how to use</p>
+<h1 id="PART-1.-EXPLORATION">PART 1. EXPLORATION<a class="anchor-link" href="#PART-1.-EXPLORATION">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="1.1.-Exploring-TEXT">1.1. <strong>Exploring TEXT</strong><a class="anchor-link" href="#1.1.-Exploring-TEXT">¶</a></h3><p>When data is textual, you need to explore the cells to verify all the characters are part of the <strong>alphabet</strong>.</p>
+<p>Let me use R's <strong>grep()</strong> function:</p>
 </div>
 </div>
 </div>
@@ -7722,7 +7665,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1"># show me the cells that have a character outside the alphabet</span>
@@ -7765,7 +7708,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">identification</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"\\W"</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">identification</span><span class="p">)]</span>
@@ -7807,7 +7750,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">identification</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^\\w\\s]"</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">identification</span><span class="p">,</span><span class="n">perl</span><span class="o">=</span><span class="bp">T</span><span class="p">)]</span>
@@ -7840,7 +7783,6 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Per<strong>ú</strong> is there. In general <strong>\w</strong> does not accept accented letters; but if you use Python 3, Perú will be there.</p>
 <p>Then the safe option is:</p>
 </div>
 </div>
@@ -7850,7 +7792,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">identification</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^a-zA-Z\\s]"</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">identification</span><span class="p">,</span><span class="n">perl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)]</span>
@@ -7892,7 +7834,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1"># allowing numbers, not spaces</span>
@@ -7935,7 +7877,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">category</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^a-zA-Z]"</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">category</span><span class="p">,</span><span class="n">perl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)]</span>
@@ -7963,7 +7905,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="2.2.-Exploring-NUMBERS">2.2. <strong>Exploring NUMBERS</strong><a class="anchor-link" href="#2.2.-Exploring-NUMBERS">¶</a></h3><p>If numbers are recognised as so, there is no cleaning needed. But if not, it means it has been recognised as text, then we use the regex <strong>\d</strong> (and its variations):</p>
+<h3 id="1.2.-Exploring-NUMBERS">1.2. <strong>Exploring NUMBERS</strong><a class="anchor-link" href="#1.2.-Exploring-NUMBERS">¶</a></h3><p>If numbers are recognised as so, there is no cleaning needed. But if not, it means it has been recognised as text, then we use the regex <strong>\d</strong> (and its variations):</p>
 </div>
 </div>
 </div>
@@ -7972,7 +7914,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">var1</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"\\D"</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">var1</span><span class="p">,</span><span class="n">perl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)]</span>
@@ -7998,7 +7940,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="s">'var 2'</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"\\D"</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="s">'var 2'</span><span class="p">,</span><span class="n">perl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)]</span>
@@ -8029,7 +7971,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1">### Why the error?</span>
@@ -8055,7 +7997,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="s">'var@3'</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"\\D"</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="s">'var@3'</span><span class="p">,</span><span class="n">perl</span><span class="o">=</span><span class="bp">T</span><span class="p">)]</span>
@@ -8097,7 +8039,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="s">'var@3'</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^\\d+\\.*\\d*]"</span><span class="p">,</span><span class="w"> </span><span class="n">dirty</span><span class="o">$</span><span class="s">'var@3'</span><span class="p">,</span><span class="w"> </span><span class="n">perl</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">invert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">F</span><span class="p">)]</span>
@@ -8130,10 +8072,21 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="2.-CLEANING">2. CLEANING<a class="anchor-link" href="#2.-CLEANING">¶</a></h2><p>As mentioned, cleaning may mean:</p>
+<h1 id="PART-2.-CLEANING">PART 2. CLEANING<a class="anchor-link" href="#PART-2.-CLEANING">¶</a></h1><p>As mentioned, cleaning may mean:</p>
 <p>a. Making bad characters disappear.</p>
 <p>b. Keeping good characters stay.</p>
 <p>Let's start with the <em>column names</em>:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="2.1--The-Column-names">2.1  The Column names<a class="anchor-link" href="#2.1--The-Column-names">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8142,7 +8095,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">names</span><span class="p">(</span><span class="n">dirty</span><span class="p">)[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^0-9a-zA-Z]"</span><span class="p">,</span><span class="nf">names</span><span class="p">(</span><span class="n">dirty</span><span class="p">),</span><span class="n">perl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)]</span>
@@ -8184,7 +8137,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1"># option 1</span>
@@ -8216,7 +8169,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1"># option 2</span>
@@ -8248,7 +8201,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1"># # option 3</span>
@@ -8291,7 +8244,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">names</span><span class="p">(</span><span class="n">dirty</span><span class="p">)</span><span class="o">=</span><span class="nf">gsub</span><span class="p">(</span><span class="s">"[^0-9a-zA-Z]"</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="nf">names</span><span class="p">(</span><span class="n">dirty</span><span class="p">),</span><span class="w"> </span><span class="n">perl</span><span class="o">=</span><span class="bp">T</span><span class="w"> </span><span class="p">)</span>
@@ -8335,7 +8288,22 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>The column names were cleaned by <strong>Making bad characters disappear</strong> 🙂</p>
-<p>Let's check the <strong>identification</strong> column:</p>
+<h2 id="2.2--The-dataframe-contents">2.2  The dataframe contents<a class="anchor-link" href="#2.2--The-dataframe-contents">¶</a></h2><p>The contents include:</p>
+<ul>
+<li>The data columns. Generally numbers and categories.</li>
+<li>The identifier column(s). Generally text.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="2.2.1-The-idientifier-column(s)">2.2.1 The idientifier column(s)<a class="anchor-link" href="#2.2.1-The-idientifier-column(s)">¶</a></h3><p>We have two of those. Let's check the <strong>identification</strong> column:</p>
 </div>
 </div>
 </div>
@@ -8344,7 +8312,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">identification</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^a-zA-Z\\s]"</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">identification</span><span class="p">,</span><span class="n">perl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)]</span>
@@ -8389,7 +8357,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">gsub</span><span class="p">(</span><span class="s">"\\[.*\\]"</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">identification</span><span class="p">,</span><span class="n">perl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span>
@@ -8433,7 +8401,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">strsplit</span><span class="p">(</span><span class="n">dirty</span><span class="o">$</span><span class="n">identification</span><span class="p">,</span><span class="n">split</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">'['</span><span class="p">,</span><span class="n">fixed</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
@@ -8483,7 +8451,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1">## saving result</span>
@@ -8533,7 +8501,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">identification</span><span class="o">=</span><span class="n">goodColumn</span>
@@ -8580,26 +8548,12 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-r"><pre><span></span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1">## you want to keep [2]:</span>
@@ -8608,7 +8562,7 @@ a.anchor-link {
 <span class="c1"># as matrix</span>
 <span class="n">goodColumn</span><span class="o">=</span><span class="nf">c</span><span class="p">()</span>
 <span class="nf">for </span><span class="p">(</span><span class="n">elements</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">resultSplitIn2</span><span class="p">){</span>
-<span class="w">  </span><span class="n">goodColumn</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">goodColumn</span><span class="p">,</span><span class="n">elements</span><span class="p">[</span><span class="m">2</span><span class="p">])</span>
+<span class="w">  </span><span class="n">goodColumn</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">goodColumn</span><span class="p">,</span><span class="n">elements</span><span class="p">[</span><span class="m">2</span><span class="p">])</span><span class="w"> </span><span class="c1">#keepig the right part!</span>
 
 <span class="p">}</span>
 <span class="n">goodColumn</span>
@@ -8650,7 +8604,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">identification2</span><span class="o">=</span><span class="n">goodColumn</span>
@@ -8693,6 +8647,17 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="2.2.2-The-Categorical-columns">2.2.2 The Categorical columns<a class="anchor-link" href="#2.2.2-The-Categorical-columns">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>The <strong>category</strong> requires a frequency table:</p>
 </div>
 </div>
@@ -8702,7 +8667,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">table</span><span class="p">(</span><span class="n">dirty</span><span class="o">$</span><span class="n">category</span><span class="p">)</span>
@@ -8741,11 +8706,11 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1">#what about:</span>
-<span class="nf">gsub</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span><span class="s">'A'</span><span class="p">,</span><span class="w"> </span><span class="n">dirty</span><span class="o">$</span><span class="n">category</span><span class="p">,</span><span class="n">fixed</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="nf">gsub</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span><span class="s">'A'</span><span class="p">,</span><span class="w"> </span><span class="n">dirty</span><span class="o">$</span><span class="n">category</span><span class="p">,</span><span class="n">fixed</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span><span class="w"> </span><span class="c1">#fixed uses NO REGEX</span>
 </pre></div>
 </div>
 </div>
@@ -8784,7 +8749,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1">## maybe</span>
@@ -8829,7 +8794,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="p">[</span><span class="n">dirty</span><span class="o">$</span><span class="n">category</span><span class="o">==</span><span class="s">'a'</span><span class="p">,</span><span class="s">'category'</span><span class="p">]</span><span class="o">=</span><span class="s">'A'</span>
@@ -8874,7 +8839,18 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>As you seem there are some symbols for missing. We could change it now. Or later.</p>
-<p>Let me first check the <strong>numeric columns</strong>:</p>
+<p>Let me first check the <strong>numeric columns</strong></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="2.2.3.-The-numerical-columns">2.2.3. The numerical columns<a class="anchor-link" href="#2.2.3.-The-numerical-columns">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8883,7 +8859,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">gsub</span><span class="p">(</span><span class="s">','</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">var1</span><span class="p">)</span>
@@ -8925,7 +8901,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">var1</span><span class="o">=</span><span class="nf">gsub</span><span class="p">(</span><span class="s">','</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">var1</span><span class="p">)</span>
@@ -8977,7 +8953,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1"># save where you have the issue</span>
@@ -9019,7 +8995,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1">## now replace</span>
@@ -9061,7 +9037,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1"># now the real value</span>
@@ -9093,7 +9069,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="c1"># then</span>
@@ -9147,7 +9123,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="p">[</span><span class="s">'var3'</span><span class="p">]</span><span class="o">=</span><span class="nf">gsub</span><span class="p">(</span><span class="s">"\\$|\\s"</span><span class="p">,</span><span class="s">''</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">var3</span><span class="p">)</span>
@@ -9190,7 +9166,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Detecting-missing-values:">Detecting missing values:<a class="anchor-link" href="#Detecting-missing-values:">¶</a></h3><p>Wrong missing values representation should be replace with care. Do it according to the data type.</p>
+<h2 id="2.3.-Detecting-missing-values:">2.3. Detecting missing values:<a class="anchor-link" href="#2.3.-Detecting-missing-values:">¶</a></h2><p>Wrong missing values representation should be replace with care. Do it according to the data type.</p>
 <p>Then, let's start with the <strong>categorical</strong> column:</p>
 </div>
 </div>
@@ -9200,7 +9176,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">badSymbolCat</span><span class="o">=</span><span class="nf">grep</span><span class="p">(</span><span class="s">'\\W+'</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">category</span><span class="p">,</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span>
@@ -9238,7 +9214,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">category</span><span class="o">=</span><span class="nf">gsub</span><span class="p">(</span><span class="n">badSymbolCat</span><span class="p">,</span><span class="kc">NA</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">category</span><span class="p">,</span><span class="n">fixed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span>
@@ -9290,7 +9266,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [42]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">var1</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^\\d+\\.*\\d*]"</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">var1</span><span class="p">,</span><span class="n">perl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)]</span>
@@ -9316,7 +9292,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [43]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">var2</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^\\d+\\.*\\d*]"</span><span class="p">,</span><span class="n">dirty</span><span class="o">$</span><span class="n">var2</span><span class="p">,</span><span class="n">perl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)]</span>
@@ -9342,7 +9318,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [44]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [43]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="o">$</span><span class="n">var3</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^\\d+\\.*\\d*]"</span><span class="p">,</span><span class="w"> </span><span class="n">dirty</span><span class="o">$</span><span class="n">var3</span><span class="p">,</span><span class="w"> </span><span class="n">perl</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">invert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">F</span><span class="p">)]</span>
@@ -9368,12 +9344,23 @@ a.anchor-link {
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Here I apply a function to several columns, instead of one by one:</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [45]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [44]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">sapply</span><span class="p">(</span><span class="n">dirty</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">'var1'</span><span class="p">,</span><span class="s">'var2'</span><span class="p">,</span><span class="s">'var3'</span><span class="p">)],</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">col</span><span class="p">){</span><span class="n">col</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^\\d+\\.*\\d*]"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">perl</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">invert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">F</span><span class="p">)]})</span>
@@ -9407,12 +9394,23 @@ a.anchor-link {
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Nice output:</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [46]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">unlist</span><span class="p">(</span><span class="nf">sapply</span><span class="p">(</span><span class="n">dirty</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">'var1'</span><span class="p">,</span><span class="s">'var2'</span><span class="p">,</span><span class="s">'var3'</span><span class="p">)],</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">col</span><span class="p">){</span><span class="n">col</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^\\d+\\.*\\d*]"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">perl</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">invert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">F</span><span class="p">)]}))</span>
@@ -9443,7 +9441,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [47]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [46]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">unique</span><span class="p">(</span><span class="nf">unlist</span><span class="p">(</span><span class="nf">sapply</span><span class="p">(</span><span class="n">dirty</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">'var1'</span><span class="p">,</span><span class="s">'var2'</span><span class="p">,</span><span class="s">'var3'</span><span class="p">)],</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">col</span><span class="p">){</span><span class="n">col</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^\\d+\\.*\\d*]"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">perl</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">invert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">F</span><span class="p">)]})))</span>
@@ -9485,7 +9483,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [48]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">detectWrongNA</span><span class="o">=</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">col</span><span class="p">){</span><span class="n">col</span><span class="p">[</span><span class="nf">grep</span><span class="p">(</span><span class="s">"[^\\d+\\.*\\d*]"</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">perl</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">invert</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">F</span><span class="p">)]}</span>
@@ -9531,7 +9529,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [49]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [48]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">'var1'</span><span class="p">,</span><span class="s">'var2'</span><span class="p">,</span><span class="s">'var3'</span><span class="p">)]</span><span class="o">=</span><span class="nf">lapply</span><span class="p">(</span><span class="n">dirty</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">'var1'</span><span class="p">,</span><span class="s">'var2'</span><span class="p">,</span><span class="s">'var3'</span><span class="p">)],</span><span class="nf">function</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">((</span><span class="n">col</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">badSymbolNum_vector</span><span class="p">),</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">))</span>
@@ -9573,7 +9571,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [50]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [49]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="nf">str</span><span class="p">(</span><span class="n">dirty</span><span class="p">)</span>
@@ -9608,7 +9606,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Always be preventive with meading and trailing spaces!</p>
+<p>Always be preventive with leading and trailing spaces!</p>
 </div>
 </div>
 </div>
@@ -9617,10 +9615,10 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [51]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [50]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="p">[,]</span><span class="o">=</span><span class="nf">sapply</span><span class="p">(</span><span class="n">dirty</span><span class="p">[,],</span><span class="n">trimws</span><span class="p">)</span>
+<div class="highlight hl-r"><pre><span></span><span class="n">dirty</span><span class="p">[,]</span><span class="o">=</span><span class="nf">sapply</span><span class="p">(</span><span class="n">dirty</span><span class="p">[,],</span><span class="n">trimws</span><span class="p">)</span><span class="w"> </span><span class="c1">#use it when all are CHR!</span>
 <span class="n">nowClean</span><span class="o">=</span><span class="n">dirty</span><span class="p">[,]</span>
 <span class="nf">str</span><span class="p">(</span><span class="n">nowClean</span><span class="p">)</span>
 </pre></div>
@@ -9652,7 +9650,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [52]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [51]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-r"><pre><span></span><span class="n">nowClean</span>
@@ -9694,7 +9692,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="SAVING-the-CLEAN-data">SAVING the CLEAN data<a class="anchor-link" href="#SAVING-the-CLEAN-data">¶</a></h2>
+<h2 id="2.4.-Saving-the-cleaned-data">2.4. Saving the cleaned data<a class="anchor-link" href="#2.4.-Saving-the-cleaned-data">¶</a></h2><p>I will save the cleaned dataframe <strong>locally</strong>:</p>
 </div>
 </div>
 </div>
@@ -9703,20 +9701,807 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [53]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [54]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-r"><pre><span></span><span class="n">folder</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">"DataCleanAndFormatted"</span>
+<div class="highlight hl-r"><pre><span></span><span class="n">folder</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">" DataCleanAndFormatted"</span>
 
 <span class="c1"># Check if the folder exists</span>
 <span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">dir.exists</span><span class="p">(</span><span class="n">folder</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1"># Create the folder</span>
 <span class="w">  </span><span class="nf">dir.create</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
-<span class="w">  </span><span class="nf">write.csv</span><span class="p">(</span><span class="n">nowClean</span><span class="p">,</span><span class="nf">file.path</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="s">"nowClean.csv"</span><span class="p">))</span>
+<span class="w">  </span><span class="nf">write.csv</span><span class="p">(</span><span class="n">nowClean</span><span class="p">,</span><span class="nf">file.path</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="s">"nowClean.csv"</span><span class="p">),</span><span class="n">row.names</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
 
 <span class="p">}</span><span class="w"> </span><span class="n">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nf">write.csv</span><span class="p">(</span><span class="n">nowClean</span><span class="p">,</span><span class="nf">file.path</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="s">"nowClean.csv"</span><span class="p">))}</span>
+<span class="w">  </span><span class="nf">write.csv</span><span class="p">(</span><span class="n">nowClean</span><span class="p">,</span><span class="nf">file.path</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="s">"nowClean.csv"</span><span class="p">),</span><span class="n">row.names</span><span class="o">=</span><span class="bp">F</span><span class="p">)}</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>The cleaned fill will be sent to Github</strong></p>
+<p>The formatting part will read this file from GitHub.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="PART-3.-FORMATTING">PART 3. FORMATTING<a class="anchor-link" href="#PART-3.-FORMATTING">¶</a></h1><p>Let me read the cleaned data from <strong>GITHUB</strong></p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [55]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="n">linkCleanData</span><span class="o">=</span><span class="s">'https://github.com/MAGALLANESJoseManuel/deli2_test/raw/refs/heads/main/%20DataCleanAndFormatted/nowClean.csv'</span>
+<span class="n">cleanData</span><span class="o">=</span><span class="nf">read.csv</span><span class="p">(</span><span class="n">linkCleanData</span><span class="p">)</span>
+<span class="nf">str</span><span class="p">(</span><span class="n">cleanData</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>'data.frame':	6 obs. of  6 variables:
+ $ identification : chr  "Perú" "USA" "Canada" "Côte D'Ivoire" ...
+ $ identification2: chr  "South America" "North America" "North America" "Africa" ...
+ $ var1           : int  1500 2500 3500 2500 NA 2550
+ $ var2           : int  1200000 1300000 NA NA 250000 310000
+ $ var3           : num  500 1500 1.5 NA NA 330
+ $ category       : chr  "A" "A" "Ba" "Ba" ...
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [56]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="n">cleanData</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<table class="dataframe">
+<caption>A data.frame: 6 × 6</caption>
+<thead>
+<tr><th scope="col">identification</th><th scope="col">identification2</th><th scope="col">var1</th><th scope="col">var2</th><th scope="col">var3</th><th scope="col">category</th></tr>
+<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+<tr><td>Perú          </td><td>South America</td><td>1500</td><td>1200000</td><td> 500.0</td><td>A </td></tr>
+<tr><td>USA           </td><td>North America</td><td>2500</td><td>1300000</td><td>1500.0</td><td>A </td></tr>
+<tr><td>Canada        </td><td>North America</td><td>3500</td><td>     NA</td><td>   1.5</td><td>Ba</td></tr>
+<tr><td>Côte D'Ivoire </td><td>Africa       </td><td>2500</td><td>     NA</td><td>    NA</td><td>Ba</td></tr>
+<tr><td>Israel        </td><td>Asia         </td><td>  NA</td><td> 250000</td><td>    NA</td><td>NA</td></tr>
+<tr><td>United Kingdom</td><td>Europe       </td><td>2550</td><td> 310000</td><td> 330.0</td><td>Ba</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="The-numerical-data">The numerical data<a class="anchor-link" href="#The-numerical-data">¶</a></h2><p>Since the numeric data was clean, you need not format those columns.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="The-categorical-data">The categorical data<a class="anchor-link" href="#The-categorical-data">¶</a></h2><p>We have one categorical column, currently as text.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [57]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="n">cleanData</span><span class="o">$</span><span class="n">category</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>'A'</li><li>'A'</li><li>'Ba'</li><li>'Ba'</li><li>NA</li><li>'Ba'</li></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Create a column of labels as categorical. If the levels are NOT ordinal, just use letters (if you had ordinal levels, you should add numbers at the beginning).</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [58]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="c1"># create and rename</span>
+
+<span class="n">cleanData</span><span class="o">$</span><span class="n">category_label</span><span class="o">=</span><span class="nf">factor</span><span class="p">(</span><span class="n">cleanData</span><span class="o">$</span><span class="n">category</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">'A'</span><span class="p">,</span><span class="s">'Ba'</span><span class="p">),</span>
+<span class="w">                                </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">'Not Allied'</span><span class="p">,</span><span class="w"> </span><span class="s">'Allied'</span><span class="p">))</span>
+
+<span class="c1"># result</span>
+<span class="n">cleanData</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<table class="dataframe">
+<caption>A data.frame: 6 × 7</caption>
+<thead>
+<tr><th scope="col">identification</th><th scope="col">identification2</th><th scope="col">var1</th><th scope="col">var2</th><th scope="col">var3</th><th scope="col">category</th><th scope="col">category_label</th></tr>
+<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;fct&gt;</th></tr>
+</thead>
+<tbody>
+<tr><td>Perú          </td><td>South America</td><td>1500</td><td>1200000</td><td> 500.0</td><td>A </td><td>Not Allied</td></tr>
+<tr><td>USA           </td><td>North America</td><td>2500</td><td>1300000</td><td>1500.0</td><td>A </td><td>Not Allied</td></tr>
+<tr><td>Canada        </td><td>North America</td><td>3500</td><td>     NA</td><td>   1.5</td><td>Ba</td><td>Allied    </td></tr>
+<tr><td>Côte D'Ivoire </td><td>Africa       </td><td>2500</td><td>     NA</td><td>    NA</td><td>Ba</td><td>Allied    </td></tr>
+<tr><td>Israel        </td><td>Asia         </td><td>  NA</td><td> 250000</td><td>    NA</td><td>NA</td><td>NA        </td></tr>
+<tr><td>United Kingdom</td><td>Europe       </td><td>2550</td><td> 310000</td><td> 330.0</td><td>Ba</td><td>Allied    </td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [59]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="c1"># verifying</span>
+<span class="nf">str</span><span class="p">(</span><span class="n">cleanData</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>'data.frame':	6 obs. of  7 variables:
+ $ identification : chr  "Perú" "USA" "Canada" "Côte D'Ivoire" ...
+ $ identification2: chr  "South America" "North America" "North America" "Africa" ...
+ $ var1           : int  1500 2500 3500 2500 NA 2550
+ $ var2           : int  1200000 1300000 NA NA 250000 310000
+ $ var3           : num  500 1500 1.5 NA NA 330
+ $ category       : chr  "A" "A" "Ba" "Ba" ...
+ $ category_label : Factor w/ 2 levels "Not Allied","Allied": 1 1 2 2 NA 2
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Now create a representation of the categories using numbers:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [60]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="n">RENAME_category</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">"Not Allied"</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="p">,</span><span class="s">"Allied"</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">cleanData</span><span class="o">$</span><span class="n">category_int</span><span class="o">=</span><span class="n">RENAME_category</span><span class="p">[</span><span class="n">cleanData</span><span class="o">$</span><span class="n">category_label</span><span class="p">]</span>
+
+<span class="c1">#result</span>
+<span class="n">cleanData</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<table class="dataframe">
+<caption>A data.frame: 6 × 8</caption>
+<thead>
+<tr><th scope="col">identification</th><th scope="col">identification2</th><th scope="col">var1</th><th scope="col">var2</th><th scope="col">var3</th><th scope="col">category</th><th scope="col">category_label</th><th scope="col">category_int</th></tr>
+<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;fct&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+<tr><td>Perú          </td><td>South America</td><td>1500</td><td>1200000</td><td> 500.0</td><td>A </td><td>Not Allied</td><td> 0</td></tr>
+<tr><td>USA           </td><td>North America</td><td>2500</td><td>1300000</td><td>1500.0</td><td>A </td><td>Not Allied</td><td> 0</td></tr>
+<tr><td>Canada        </td><td>North America</td><td>3500</td><td>     NA</td><td>   1.5</td><td>Ba</td><td>Allied    </td><td> 1</td></tr>
+<tr><td>Côte D'Ivoire </td><td>Africa       </td><td>2500</td><td>     NA</td><td>    NA</td><td>Ba</td><td>Allied    </td><td> 1</td></tr>
+<tr><td>Israel        </td><td>Asia         </td><td>  NA</td><td> 250000</td><td>    NA</td><td>NA</td><td>NA        </td><td>NA</td></tr>
+<tr><td>United Kingdom</td><td>Europe       </td><td>2550</td><td> 310000</td><td> 330.0</td><td>Ba</td><td>Allied    </td><td> 1</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [61]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="c1"># verifying</span>
+<span class="nf">str</span><span class="p">(</span><span class="n">cleanData</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>'data.frame':	6 obs. of  8 variables:
+ $ identification : chr  "Perú" "USA" "Canada" "Côte D'Ivoire" ...
+ $ identification2: chr  "South America" "North America" "North America" "Africa" ...
+ $ var1           : int  1500 2500 3500 2500 NA 2550
+ $ var2           : int  1200000 1300000 NA NA 250000 310000
+ $ var3           : num  500 1500 1.5 NA NA 330
+ $ category       : chr  "A" "A" "Ba" "Ba" ...
+ $ category_label : Factor w/ 2 levels "Not Allied","Allied": 1 1 2 2 NA 2
+ $ category_int   : num  0 0 1 1 NA 1
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="The-TEXT-data">The TEXT data<a class="anchor-link" href="#The-TEXT-data">¶</a></h2><p>We have two columns of text data.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [62]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="n">cleanData</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<table class="dataframe">
+<caption>A data.frame: 6 × 2</caption>
+<thead>
+<tr><th scope="col">identification</th><th scope="col">identification2</th></tr>
+<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+<tr><td>Perú          </td><td>South America</td></tr>
+<tr><td>USA           </td><td>North America</td></tr>
+<tr><td>Canada        </td><td>North America</td></tr>
+<tr><td>Côte D'Ivoire </td><td>Africa       </td></tr>
+<tr><td>Israel        </td><td>Asia         </td></tr>
+<tr><td>United Kingdom</td><td>Europe       </td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The text format should have all characters in lower or upper case. This will be needed during the <strong>integration</strong> stage. Let me choose upper case:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [63]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="nf">lapply</span><span class="p">(</span><span class="n">cleanData</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">],</span><span class="n">toupper</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<dl>
+<dt>$identification</dt>
+<dd><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>'PERÚ'</li><li>'USA'</li><li>'CANADA'</li><li>'CÔTE D\'IVOIRE'</li><li>'ISRAEL'</li><li>'UNITED KINGDOM'</li></ol>
+</dd>
+<dt>$identification2</dt>
+<dd><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>'SOUTH AMERICA'</li><li>'NORTH AMERICA'</li><li>'NORTH AMERICA'</li><li>'AFRICA'</li><li>'ASIA'</li><li>'EUROPE'</li></ol>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We need to get rid of non-ASCII characters.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [66]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="nf">lapply</span><span class="p">(</span><span class="nf">lapply</span><span class="p">(</span><span class="n">cleanData</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">],</span><span class="n">toupper</span><span class="p">),</span><span class="n">iconv</span><span class="p">,</span><span class="n">from</span><span class="o">=</span><span class="s">"UTF-8"</span><span class="p">,</span><span class="n">to</span><span class="o">=</span><span class="s">"ASCII"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<dl>
+<dt>$identification</dt>
+<dd><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>'PER\'U'</li><li>'USA'</li><li>'CANADA'</li><li>'C^OTE D\'IVOIRE'</li><li>'ISRAEL'</li><li>'UNITED KINGDOM'</li></ol>
+</dd>
+<dt>$identification2</dt>
+<dd><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class="list-inline"><li>'SOUTH AMERICA'</li><li>'NORTH AMERICA'</li><li>'NORTH AMERICA'</li><li>'AFRICA'</li><li>'ASIA'</li><li>'EUROPE'</li></ol>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Let's create a function to improve readability:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [67]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="n">formatText</span><span class="o">=</span><span class="nf">function</span><span class="p">(</span><span class="n">column</span><span class="p">){</span><span class="nf">iconv</span><span class="p">(</span><span class="nf">toupper</span><span class="p">(</span><span class="n">column</span><span class="p">),</span><span class="n">from</span><span class="o">=</span><span class="s">"UTF-8"</span><span class="p">,</span><span class="n">to</span><span class="o">=</span><span class="s">"ASCII"</span><span class="p">)}</span>
+<span class="n">cleanData</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">]</span><span class="o">=</span><span class="nf">lapply</span><span class="p">(</span><span class="n">cleanData</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">],</span><span class="n">formatText</span><span class="p">)</span>
+
+<span class="c1"># result</span>
+<span class="n">cleanData</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<table class="dataframe">
+<caption>A data.frame: 6 × 8</caption>
+<thead>
+<tr><th scope="col">identification</th><th scope="col">identification2</th><th scope="col">var1</th><th scope="col">var2</th><th scope="col">var3</th><th scope="col">category</th><th scope="col">category_label</th><th scope="col">category_int</th></tr>
+<tr><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;int&gt;</th><th scope="col">&lt;dbl&gt;</th><th scope="col">&lt;chr&gt;</th><th scope="col">&lt;fct&gt;</th><th scope="col">&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+<tr><td>PER'U         </td><td>SOUTH AMERICA</td><td>1500</td><td>1200000</td><td> 500.0</td><td>A </td><td>Not Allied</td><td> 0</td></tr>
+<tr><td>USA           </td><td>NORTH AMERICA</td><td>2500</td><td>1300000</td><td>1500.0</td><td>A </td><td>Not Allied</td><td> 0</td></tr>
+<tr><td>CANADA        </td><td>NORTH AMERICA</td><td>3500</td><td>     NA</td><td>   1.5</td><td>Ba</td><td>Allied    </td><td> 1</td></tr>
+<tr><td>C^OTE D'IVOIRE</td><td>AFRICA       </td><td>2500</td><td>     NA</td><td>    NA</td><td>Ba</td><td>Allied    </td><td> 1</td></tr>
+<tr><td>ISRAEL        </td><td>ASIA         </td><td>  NA</td><td> 250000</td><td>    NA</td><td>NA</td><td>NA        </td><td>NA</td></tr>
+<tr><td>UNITED KINGDOM</td><td>EUROPE       </td><td>2550</td><td> 310000</td><td> 330.0</td><td>Ba</td><td>Allied    </td><td> 1</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [68]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="nf">str</span><span class="p">(</span><span class="n">cleanData</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>'data.frame':	6 obs. of  8 variables:
+ $ identification : chr  "PER'U" "USA" "CANADA" "C^OTE D'IVOIRE" ...
+ $ identification2: chr  "SOUTH AMERICA" "NORTH AMERICA" "NORTH AMERICA" "AFRICA" ...
+ $ var1           : int  1500 2500 3500 2500 NA 2550
+ $ var2           : int  1200000 1300000 NA NA 250000 310000
+ $ var3           : num  500 1500 1.5 NA NA 330
+ $ category       : chr  "A" "A" "Ba" "Ba" ...
+ $ category_label : Factor w/ 2 levels "Not Allied","Allied": 1 1 2 2 NA 2
+ $ category_int   : num  0 0 1 1 NA 1
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Saving">Saving<a class="anchor-link" href="#Saving">¶</a></h2><p>The data formatted <strong>SHOULD NOT</strong> be saved as CSV. In R, choose <strong>RDS</strong>:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [71]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="n">folder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"DataCleanAndFormatted"</span>
+
+<span class="c1"># Check if the folder exists</span>
+<span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">dir.exists</span><span class="p">(</span><span class="n">folder</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># Create the folder</span>
+<span class="w">  </span><span class="nf">dir.create</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">saveRDS</span><span class="p">(</span><span class="n">cleanData</span><span class="p">,</span><span class="nf">file.path</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="s">"formatted_Data.RDS"</span><span class="p">))</span>
+<span class="w">  </span><span class="nf">write.csv</span><span class="p">(</span><span class="n">cleanData</span><span class="p">,</span><span class="nf">file.path</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="s">"formatted_Data.csv"</span><span class="p">),</span><span class="n">row.names</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+
+<span class="p">}</span><span class="w"> </span><span class="n">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">saveRDS</span><span class="p">(</span><span class="n">cleanData</span><span class="p">,</span><span class="nf">file.path</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="s">"formatted_Data.RDS"</span><span class="p">))</span>
+<span class="w">  </span><span class="nf">write.csv</span><span class="p">(</span><span class="n">cleanData</span><span class="p">,</span><span class="nf">file.path</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="s">"formatted_Data.csv"</span><span class="p">),</span><span class="n">row.names</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Which can be read like this:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [72]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="n">formatted_Data</span><span class="o">=</span><span class="nf">readRDS</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="s">"formatted_Data.RDS"</span><span class="p">))</span>
+<span class="nf">str</span><span class="p">(</span><span class="n">formatted_Data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>'data.frame':	6 obs. of  8 variables:
+ $ identification : chr  "PER'U" "USA" "CANADA" "C^OTE D'IVOIRE" ...
+ $ identification2: chr  "SOUTH AMERICA" "NORTH AMERICA" "NORTH AMERICA" "AFRICA" ...
+ $ var1           : int  1500 2500 3500 2500 NA 2550
+ $ var2           : int  1200000 1300000 NA NA 250000 310000
+ $ var3           : num  500 1500 1.5 NA NA 330
+ $ category       : chr  "A" "A" "Ba" "Ba" ...
+ $ category_label : Factor w/ 2 levels "Not Allied","Allied": 1 1 2 2 NA 2
+ $ category_int   : num  0 0 1 1 NA 1
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [73]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="n">formatted_Data_csv</span><span class="o">=</span><span class="nf">read.csv</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span><span class="s">"formatted_Data.csv"</span><span class="p">))</span>
+<span class="nf">str</span><span class="p">(</span><span class="n">formatted_Data_csv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>'data.frame':	6 obs. of  8 variables:
+ $ identification : chr  "PER'U" "USA" "CANADA" "C^OTE D'IVOIRE" ...
+ $ identification2: chr  "SOUTH AMERICA" "NORTH AMERICA" "NORTH AMERICA" "AFRICA" ...
+ $ var1           : int  1500 2500 3500 2500 NA 2550
+ $ var2           : int  1200000 1300000 NA NA 250000 310000
+ $ var3           : num  500 1500 1.5 NA NA 330
+ $ category       : chr  "A" "A" "Ba" "Ba" ...
+ $ category_label : chr  "Not Allied" "Not Allied" "Allied" "Allied" ...
+ $ category_int   : int  0 0 1 1 NA 1
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [74]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">formatted_Data_csv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre> identification     identification2         var1           var2        
+ Length:6           Length:6           Min.   :1500   Min.   : 250000  
+ Class :character   Class :character   1st Qu.:2500   1st Qu.: 295000  
+ Mode  :character   Mode  :character   Median :2500   Median : 755000  
+                                       Mean   :2510   Mean   : 765000  
+                                       3rd Qu.:2550   3rd Qu.:1225000  
+                                       Max.   :3500   Max.   :1300000  
+                                       NA's   :1      NA's   :2        
+      var3          category         category_label      category_int
+ Min.   :   1.5   Length:6           Length:6           Min.   :0.0  
+ 1st Qu.: 247.9   Class :character   Class :character   1st Qu.:0.0  
+ Median : 415.0   Mode  :character   Mode  :character   Median :1.0  
+ Mean   : 582.9                                         Mean   :0.6  
+ 3rd Qu.: 750.0                                         3rd Qu.:1.0  
+ Max.   :1500.0                                         Max.   :1.0  
+ NA's   :2                                              NA's   :1    </pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [75]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-r"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">formatted_Data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre> identification     identification2         var1           var2        
+ Length:6           Length:6           Min.   :1500   Min.   : 250000  
+ Class :character   Class :character   1st Qu.:2500   1st Qu.: 295000  
+ Mode  :character   Mode  :character   Median :2500   Median : 755000  
+                                       Mean   :2510   Mean   : 765000  
+                                       3rd Qu.:2550   3rd Qu.:1225000  
+                                       Max.   :3500   Max.   :1300000  
+                                       NA's   :1      NA's   :2        
+      var3          category            category_label  category_int
+ Min.   :   1.5   Length:6           Not Allied:2      Min.   :0.0  
+ 1st Qu.: 247.9   Class :character   Allied    :3      1st Qu.:0.0  
+ Median : 415.0   Mode  :character   NA's      :1      Median :1.0  
+ Mean   : 582.9                                        Mean   :0.6  
+ 3rd Qu.: 750.0                                        3rd Qu.:1.0  
+ Max.   :1500.0                                        Max.   :1.0  
+ NA's   :2                                             NA's   :1    </pre>
 </div>
 </div>
 </div>
